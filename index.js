@@ -5,6 +5,8 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const port = process.env.PORT || 5000;
 const app = express();
+require("dotenv").config();
+console.log(process.env);
 app.get("/", (req, res) => {
   res.send("Your app is connected");
 });
@@ -17,7 +19,7 @@ app.use(bodyParser.json());
 
 //DB Config
 
-const db = require("./config/keys").mongoURI;
+const db = process.env.MONGO_URI;
 mongoose
   .connect(db, {
     useNewUrlParser: true,
